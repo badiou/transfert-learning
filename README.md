@@ -616,7 +616,308 @@ pip install -r requirements.txt
 # Lancer Jupyter Notebook
 jupyter notebook
 ```
+## 📌 Quelques captures
 
+
+``` bxxxxxxxx@Air-de-XXXX  ~/Documents/MLProject   main ? ↑1  pip3 install -r requirements.txt                        ✔  146  21:08:39 
+Requirement already satisfied: contourpy==1.3.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: cycler==0.12.1 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (0.12.1)
+Requirement already satisfied: filelock==3.19.1 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (3.19.1)
+Requirement already satisfied: fonttools==4.60.2 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (4.60.2)
+Requirement already satisfied: fsspec==2025.10.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 5)) (2025.10.0)
+Requirement already satisfied: importlib_resources==6.5.2 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 6)) (6.5.2)
+Requirement already satisfied: Jinja2==3.1.6 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 7)) (3.1.6)
+Requirement already satisfied: kiwisolver==1.4.7 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 8)) (1.4.7)
+Requirement already satisfied: MarkupSafe==3.0.3 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 9)) (3.0.3)
+Requirement already satisfied: matplotlib==3.9.4 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 10)) (3.9.4)
+Requirement already satisfied: mpmath==1.3.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 11)) (1.3.0)
+Requirement already satisfied: networkx==3.2.1 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 12)) (3.2.1)
+Requirement already satisfied: numpy==2.0.2 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 13)) (2.0.2)
+Requirement already satisfied: packaging==26.3 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 14)) (26.3)
+Requirement already satisfied: pillow==11.3.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 15)) (11.3.0)
+Requirement already satisfied: pyparsing==3.3.2 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 16)) (3.3.2)
+Requirement already satisfied: python-dateutil==2.9.0.post0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 17)) (2.9.0.post0)
+Requirement already satisfied: six==1.17.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 18)) (1.17.0)
+Requirement already satisfied: sympy==1.14.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 19)) (1.14.0)
+Requirement already satisfied: torch==2.8.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 20)) (2.8.0)
+Requirement already satisfied: torchvision==0.23.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 21)) (0.23.0)
+Requirement already satisfied: typing_extensions==4.16.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 22)) (4.16.0)
+Requirement already satisfied: wget==3.2 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 23)) (3.2)
+Requirement already satisfied: zipp==3.23.1 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 24)) (3.23.1)
+ badiououro-bangna@Air-de-Badiou  ~/Documents/MLProject   main ? ↑1  python3 transfert-learning.py                           ✔  146  21:08:47 
+Téléchargement du dataset...
+100% [........................................................................] 47286322 / 47286322
+Décompression du dataset...
+Dataset téléchargé et décompressé !
+Classes : ['ants', 'bees']
+Taille train : 244
+Taille validation : 153
+Using mps device
+
+
+============================================================
+FINETUNING DU RESNET18
+============================================================
+Epoch 0/24
+----------
+train Loss: 0.7330 Acc: 0.6270
+val Loss: 0.2171 Acc: 0.9346
+
+Epoch 1/24
+----------
+train Loss: 0.5206 Acc: 0.7869
+val Loss: 0.3039 Acc: 0.8954
+
+Epoch 2/24
+----------
+train Loss: 0.5156 Acc: 0.7869
+val Loss: 0.3095 Acc: 0.8627
+
+Epoch 3/24
+----------
+train Loss: 0.5926 Acc: 0.7623
+val Loss: 0.2665 Acc: 0.8693
+
+Epoch 4/24
+----------
+train Loss: 0.4392 Acc: 0.8156
+val Loss: 0.2641 Acc: 0.9020
+
+Epoch 5/24
+----------
+train Loss: 0.2976 Acc: 0.8934
+val Loss: 0.4044 Acc: 0.8758
+
+Epoch 6/24
+----------
+train Loss: 0.6155 Acc: 0.7787
+val Loss: 0.9126 Acc: 0.7320
+
+Epoch 7/24
+----------
+train Loss: 0.5592 Acc: 0.7910
+val Loss: 0.2518 Acc: 0.9085
+
+Epoch 8/24
+----------
+train Loss: 0.3132 Acc: 0.8566
+val Loss: 0.2382 Acc: 0.9150
+
+Epoch 9/24
+----------
+train Loss: 0.1772 Acc: 0.9385
+val Loss: 0.1809 Acc: 0.9412
+
+Epoch 10/24
+----------
+train Loss: 0.2366 Acc: 0.8975
+val Loss: 0.1963 Acc: 0.9281
+
+Epoch 11/24
+----------
+train Loss: 0.3246 Acc: 0.8975
+val Loss: 0.2023 Acc: 0.9216
+
+Epoch 12/24
+----------
+train Loss: 0.2519 Acc: 0.8975
+val Loss: 0.1784 Acc: 0.9412
+
+Epoch 13/24
+----------
+train Loss: 0.2962 Acc: 0.8893
+val Loss: 0.2408 Acc: 0.9150
+
+Epoch 14/24
+----------
+train Loss: 0.3085 Acc: 0.8689
+val Loss: 0.2014 Acc: 0.9216
+
+Epoch 15/24
+----------
+train Loss: 0.3140 Acc: 0.8770
+val Loss: 0.2263 Acc: 0.9216
+
+Epoch 16/24
+----------
+train Loss: 0.3458 Acc: 0.8443
+val Loss: 0.2824 Acc: 0.8889
+
+Epoch 17/24
+----------
+train Loss: 0.3686 Acc: 0.8402
+val Loss: 0.1911 Acc: 0.9216
+
+Epoch 18/24
+----------
+train Loss: 0.2611 Acc: 0.8852
+val Loss: 0.1928 Acc: 0.9281
+
+Epoch 19/24
+----------
+train Loss: 0.1949 Acc: 0.9180
+val Loss: 0.1949 Acc: 0.9281
+
+Epoch 20/24
+----------
+train Loss: 0.2501 Acc: 0.8893
+val Loss: 0.2078 Acc: 0.9216
+
+Epoch 21/24
+----------
+train Loss: 0.2217 Acc: 0.9016
+val Loss: 0.1763 Acc: 0.9346
+
+Epoch 22/24
+----------
+train Loss: 0.2945 Acc: 0.8689
+val Loss: 0.2072 Acc: 0.9216
+
+Epoch 23/24
+----------
+train Loss: 0.2802 Acc: 0.8852
+val Loss: 0.2187 Acc: 0.9216
+
+Epoch 24/24
+----------
+train Loss: 0.2325 Acc: 0.9016
+val Loss: 0.2295 Acc: 0.9085
+
+Training complete in 2m 28s
+Best val Acc: 0.9412
+
+
+============================================================
+RESNET18 COMME FEATURE EXTRACTOR
+============================================================
+Epoch 0/24
+----------
+train Loss: 0.5617 Acc: 0.7008
+val Loss: 0.1795 Acc: 0.9477
+
+Epoch 1/24
+----------
+train Loss: 0.5120 Acc: 0.7664
+val Loss: 0.2299 Acc: 0.9085
+
+Epoch 2/24
+----------
+train Loss: 0.3349 Acc: 0.8770
+val Loss: 0.1886 Acc: 0.9477
+
+Epoch 3/24
+----------
+train Loss: 0.4371 Acc: 0.8197
+val Loss: 0.1839 Acc: 0.9477
+
+Epoch 4/24
+----------
+train Loss: 0.4541 Acc: 0.7992
+val Loss: 0.2165 Acc: 0.9281
+
+Epoch 5/24
+----------
+train Loss: 0.5263 Acc: 0.7459
+val Loss: 0.2261 Acc: 0.9346
+
+Epoch 6/24
+----------
+train Loss: 0.4635 Acc: 0.8197
+val Loss: 0.2394 Acc: 0.9216
+
+Epoch 7/24
+----------
+train Loss: 0.4337 Acc: 0.8320
+val Loss: 0.1824 Acc: 0.9542
+
+Epoch 8/24
+----------
+train Loss: 0.3750 Acc: 0.8730
+val Loss: 0.1677 Acc: 0.9412
+
+Epoch 9/24
+----------
+train Loss: 0.4122 Acc: 0.8279
+val Loss: 0.1876 Acc: 0.9477
+
+Epoch 10/24
+----------
+train Loss: 0.3521 Acc: 0.8484
+val Loss: 0.1901 Acc: 0.9477
+
+Epoch 11/24
+----------
+train Loss: 0.3241 Acc: 0.8279
+val Loss: 0.1801 Acc: 0.9412
+
+Epoch 12/24
+----------
+train Loss: 0.3931 Acc: 0.8402
+val Loss: 0.1827 Acc: 0.9412
+
+Epoch 13/24
+----------
+train Loss: 0.3499 Acc: 0.8238
+val Loss: 0.1775 Acc: 0.9346
+
+Epoch 14/24
+----------
+train Loss: 0.3421 Acc: 0.8320
+val Loss: 0.1816 Acc: 0.9477
+
+Epoch 15/24
+----------
+train Loss: 0.3145 Acc: 0.8607
+val Loss: 0.1762 Acc: 0.9412
+
+Epoch 16/24
+----------
+train Loss: 0.3705 Acc: 0.8361
+val Loss: 0.1849 Acc: 0.9346
+
+Epoch 17/24
+----------
+train Loss: 0.4402 Acc: 0.8074
+val Loss: 0.1797 Acc: 0.9477
+
+Epoch 18/24
+----------
+train Loss: 0.2830 Acc: 0.8852
+val Loss: 0.1877 Acc: 0.9412
+
+Epoch 19/24
+----------
+train Loss: 0.4007 Acc: 0.8238
+val Loss: 0.1712 Acc: 0.9542
+
+Epoch 20/24
+----------
+train Loss: 0.3339 Acc: 0.8279
+val Loss: 0.1759 Acc: 0.9542
+
+Epoch 21/24
+----------
+train Loss: 0.3594 Acc: 0.8279
+val Loss: 0.1760 Acc: 0.9477
+
+Epoch 22/24
+----------
+train Loss: 0.3575 Acc: 0.8566
+val Loss: 0.1737 Acc: 0.9412
+
+Epoch 23/24
+----------
+train Loss: 0.2877 Acc: 0.8730
+val Loss: 0.1776 Acc: 0.9542
+
+Epoch 24/24
+----------
+train Loss: 0.3265 Acc: 0.8607
+val Loss: 0.1703 Acc: 0.9412
+
+Training complete in 1m 12s
+Best val Acc: 0.9542
+```
 ---
 
 ## 👨‍💻 Auteur
