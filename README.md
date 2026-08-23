@@ -619,7 +619,8 @@ jupyter notebook
 ## 📌 Quelques captures
 
 
-``` bxxxxxxxx@Air-de-XXXX  ~/Documents/MLProject   main ? ↑1  pip3 install -r requirements.txt                        ✔  146  21:08:39 
+```
+bxxxxxxxx@Air-de-XXXX ~/Documents/MLProject main > pip3 install -r requirements.txt                        ✔  146  21:08:39 
 Requirement already satisfied: contourpy==1.3.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (1.3.0)
 Requirement already satisfied: cycler==0.12.1 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (0.12.1)
 Requirement already satisfied: filelock==3.19.1 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (3.19.1)
@@ -644,7 +645,7 @@ Requirement already satisfied: torchvision==0.23.0 in ./.venv/lib/python3.9/site
 Requirement already satisfied: typing_extensions==4.16.0 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 22)) (4.16.0)
 Requirement already satisfied: wget==3.2 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 23)) (3.2)
 Requirement already satisfied: zipp==3.23.1 in ./.venv/lib/python3.9/site-packages (from -r requirements.txt (line 24)) (3.23.1)
- badiououro-bangna@Air-de-Badiou  ~/Documents/MLProject   main ? ↑1  python3 transfert-learning.py                           ✔  146  21:08:47 
+ bxxxxxxxx@Air-de-XXXX ~/Documents/MLProject main? > python3 transfert-learning.py                           ✔  146  21:08:47 
 Téléchargement du dataset...
 100% [........................................................................] 47286322 / 47286322
 Décompression du dataset...
