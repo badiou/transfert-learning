@@ -140,3 +140,127 @@ par Pillow. La prédiction est affichée après les deux entraînements.
 
 [.gitignore](.gitignore) exclut notamment l'environnement virtuel, le dataset,
 les archives ZIP, les poids de modèles et les caches Python.
+
+---
+
+# Image Classification: Ants and Bees
+
+This project uses **transfer learning** with PyTorch and Torchvision to
+classify images of ants and bees. The main script is
+[transfert-learning.py](transfert-learning.py).
+
+## Image Examples
+
+| Ant | Bee |
+| --- | --- |
+| ![An ant](images/fourmi.jpg) | ![A bee](images/abeille.jpg) |
+
+## How It Works
+
+The script:
+
+1. automatically downloads and extracts the Hymenoptera dataset if it is missing;
+2. loads the `train` and `val` sets with `ImageFolder`;
+3. transforms the images for ResNet-18: `224 x 224` crops, random augmentation
+   for training, and ImageNet normalization for both sets;
+4. trains two ImageNet-pre-trained ResNet-18 models:
+   - **fine-tuning**: all layers are trained;
+   - **feature extractor**: pre-trained layers are frozen and only the final
+     layer is trained;
+5. displays `Loss` and accuracy (`Acc`) for training and validation;
+6. displays predictions for validation images and one test image.
+
+## Requirements
+
+- Python 3.9 or later;
+- a Python virtual environment;
+- the dependencies listed in [requirements.txt](requirements.txt).
+
+The script uses the available accelerator: CUDA, MPS on Apple Silicon Macs,
+or CPU. The dataset and ResNet-18 pre-trained weights are downloaded on the
+first run.
+
+## Installation
+
+From the project directory:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+If `.venv` already exists, activate it at the start of each new terminal
+session:
+
+```bash
+source .venv/bin/activate
+```
+
+In VS Code, select `.venv/bin/python` with **Python: Select Interpreter**.
+
+## Running the Script
+
+```bash
+source .venv/bin/activate
+python transfert-learning.py
+```
+
+The first run requires an Internet connection. The script stores the dataset
+next to itself and skips the download if `hymenoptera_data/` already exists.
+
+The dataset is downloaded from:
+`https://download.pytorch.org/tutorial/hymenoptera_data.zip`.
+
+## Main Parameters
+
+The parameters are defined directly in
+[transfert-learning.py](transfert-learning.py):
+
+| Parameter | Value | Purpose |
+| --- | ---: | --- |
+| Batch size | `4` | Images processed in each batch |
+| Number of epochs | `25` | Duration of each training run |
+| Learning rate | `0.001` | SGD optimizer step size |
+| Momentum | `0.9` | SGD parameter |
+| Scheduler | `StepLR` | Reduces the rate every `7` epochs by `0.1` |
+| Workers | `0` | Compatible with macOS and MPS |
+
+The best state of each model is temporarily saved according to validation
+accuracy, then reloaded at the end of training. No model is saved permanently.
+
+## Training Results
+
+Results obtained after `25` epochs on the validation dataset:
+
+| Method | Best validation accuracy | Duration |
+| --- | ---: | ---: |
+| ResNet-18 fine-tuning | **94.77%** | 2 min 33 sec |
+| ResNet-18 as a feature extractor | **94.77%** | 1 min 12 sec |
+
+Both methods reached the same best validation score. The **feature extractor**
+approach was faster because the pre-trained layers remained frozen and only the
+final layer was optimized.
+
+For fine-tuning, the best accuracy was reached at epochs `17` and `19`. For the
+feature extractor, it was reached at several epochs, including `10`, `12`,
+`13`, `15`, `18`, `19`, `20`, and `24`.
+
+## Testing Another Image
+
+At the end of the script, the validation image is selected here:
+
+```python
+visualize_model_predictions(
+    model_conv,
+    img_path=data_dir / 'val' / 'bees' / '2501530886_e20952b97d.jpg'
+)
+```
+
+To test another image, replace this path with the path to an image readable by
+Pillow. The prediction is displayed after both training runs.
+
+## Ignored Files
+
+[.gitignore](.gitignore) excludes the virtual environment, dataset, ZIP
+archives, model weights, and Python caches.
