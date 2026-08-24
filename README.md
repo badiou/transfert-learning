@@ -105,6 +105,23 @@ Le meilleur état de chaque modèle est conservé temporairement selon
 l'accuracy de validation, puis rechargé à la fin de l'entraînement. Aucun
 modèle n'est enregistré dans un fichier permanent.
 
+## Résultats d'entraînement
+
+Résultats obtenus après `25` époques sur le dataset de validation :
+
+| Méthode | Meilleure accuracy de validation | Durée |
+| --- | ---: | ---: |
+| Fine-tuning de ResNet-18 | **94,77 %** | 2 min 33 s |
+| ResNet-18 comme feature extractor | **94,77 %** | 1 min 12 s |
+
+Les deux méthodes obtiennent le même meilleur score de validation. Le mode
+**feature extractor** est toutefois plus rapide, car les couches pré-entraînées
+restent gelées et seule la couche finale est optimisée.
+
+Pour le fine-tuning, la meilleure accuracy est atteinte aux époques `17` et
+`19`. Pour le feature extractor, elle est atteinte à plusieurs époques, dont
+`10`, `12`, `13`, `15`, `18`, `19`, `20` et `24`.
+
 ## Tester une autre image
 
 À la fin du script, l'image de validation utilisée est définie ici :
