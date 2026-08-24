@@ -10,11 +10,11 @@ import torchvision
 from torchvision import datasets, models, transforms
 import matplotlib.pyplot as plt
 import time
-import os
 from PIL import Image
 from tempfile import TemporaryDirectory
-import wget
 import zipfile
+from pathlib import Path
+from urllib.request import urlretrieve
 
 
 # ============================================================
@@ -25,23 +25,33 @@ cudnn.benchmark = True
 plt.ion()
 
 url = "https://download.pytorch.org/tutorial/hymenoptera_data.zip"
-zip_file = "hymenoptera_data.zip"
-data_dir = "hymenoptera_data"
+project_dir = Path(__file__).resolve().parent
+zip_file = project_dir / "hymenoptera_data.zip"
+data_dir = project_dir / "hymenoptera_data"
+
+
+# Le device est compatible avec CUDA, MPS (macOS) et CPU.
+device = (
+    torch.accelerator.current_accelerator()
+    if torch.accelerator.is_available()
+    else torch.device("cpu")
+)
+cudnn.benchmark = device.type == "cuda"
 
 
 # ============================================================
 # Téléchargement et décompression du dataset
 # ============================================================
 
-if not os.path.exists(data_dir):
+if not data_dir.exists():
     print("Téléchargement du dataset...")
 
-    wget.download(url, zip_file)
+    urlretrieve(url, zip_file)
 
     print("\nDécompression du dataset...")
 
     with zipfile.ZipFile(zip_file, "r") as zip_ref:
-        zip_ref.extractall(".")
+        zip_ref.extractall(project_dir)
 
     print("Dataset téléchargé et décompressé !")
 else:
@@ -81,7 +91,7 @@ data_transforms = {
 
 image_datasets = {
     x: datasets.ImageFolder(
-        os.path.join(data_dir, x),
+        data_dir / x,
         data_transforms[x]
     )
     for x in ['train', 'val']
@@ -97,7 +107,7 @@ dataloaders = {
     x: torch.utils.data.DataLoader(
         image_datasets[x],
         batch_size=4,
-        shuffle=True,
+        shuffle=x == 'train',
         num_workers=0
     )
     for x in ['train', 'val']
@@ -120,16 +130,6 @@ print("Classes :", class_names)
 print("Taille train :", dataset_sizes['train'])
 print("Taille validation :", dataset_sizes['val'])
 
-
-# ============================================================
-# Sélection du device
-# ============================================================
-
-device = (
-    torch.accelerator.current_accelerator().type
-    if torch.accelerator.is_available()
-    else "cpu"
-)
 
 print(f"Using {device} device")
 
@@ -188,10 +188,7 @@ def train_model(
     # Répertoire temporaire pour sauvegarder le meilleur modèle
     with TemporaryDirectory() as tempdir:
 
-        best_model_params_path = os.path.join(
-            tempdir,
-            'best_model_params.pt'
-        )
+        best_model_params_path = Path(tempdir) / 'best_model_params.pt'
 
         torch.save(
             model.state_dict(),
@@ -395,7 +392,7 @@ def visualize_model(model, num_images=6):
 
                 ax.set_title(
                     f'predicted: '
-                    f'{class_names[preds[j]]}'
+                    f'{class_names[preds[j].item()]}'
                 )
 
                 imshow(
@@ -427,7 +424,7 @@ print("=" * 60)
 
 # Chargement du modèle pré-entraîné
 model_ft = models.resnet18(
-    weights='IMAGENET1K_V1'
+    weights=models.ResNet18_Weights.IMAGENET1K_V1
 )
 
 
@@ -496,7 +493,7 @@ print("=" * 60)
 
 # Chargement du ResNet18 pré-entraîné
 model_conv = torchvision.models.resnet18(
-    weights='IMAGENET1K_V1'
+    weights=models.ResNet18_Weights.IMAGENET1K_V1
 )
 
 
@@ -625,11 +622,7 @@ def visualize_model_predictions(
 
 visualize_model_predictions(
     model_conv,
-    img_path=(
-        'hymenoptera_data/'
-        'val/bees/'
-        '2501530886_e20952b97d.jpg'
-    )
+    img_path=data_dir / 'val' / 'bees' / '2501530886_e20952b97d.jpg'
 )
 
 

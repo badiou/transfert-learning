@@ -1,4 +1,4 @@
-# 🐜🐝 Image Classification — Ants vs Bees
+# 🐜 🐝 Image Classification — Ants vs Bees
 
 Projet de classification d'images utilisant **Python**, **PyTorch**, **Torchvision** et un modèle **ResNet-18 pré-entraîné sur ImageNet**.
 
@@ -42,12 +42,14 @@ MLProject/
 │
 ├── requirements.txt
 ├── README.md
-└── classification.ipynb
+└── transfert-learning.py
 ```
 
 Le dossier `.venv/` contient l'environnement virtuel Python.
 
 Le dossier `hymenoptera_data/` contient les images utilisées pour l'entraînement et la validation.
+
+Le script utilise son propre emplacement pour trouver le dataset. Il peut donc être lancé depuis macOS, Linux ou Windows, quel que soit le répertoire courant du terminal.
 
 ---
 
@@ -120,13 +122,25 @@ signifie donc :
 | NumPy        | Calcul numérique et manipulation de tableaux    |
 | Matplotlib   | Visualisation des données et des résultats      |
 | Pillow       | Manipulation des images                         |
-| wget         | Téléchargement du dataset si nécessaire         |
+| urllib       | Téléchargement du dataset si nécessaire         |
 
 Le fichier `requirements.txt` contient également les dépendances indirectes nécessaires au fonctionnement de ces bibliothèques.
 
 ---
 
-## 📥 5. Dataset
+## ▶️ 5. Lancer le projet
+
+Après activation de l'environnement virtuel, exécuter :
+
+```bash
+python transfert-learning.py
+```
+
+Sur certains systèmes, utiliser `python3` à la place de `python`.
+
+Le dataset est téléchargé automatiquement dans le dossier du script s'il n'est pas déjà présent. Les poids pré-entraînés de ResNet-18 sont téléchargés par Torchvision lors du premier lancement.
+
+## 📥 6. Dataset
 
 Le projet utilise le dataset **Hymenoptera**, contenant des images de fourmis et d'abeilles.
 
@@ -160,11 +174,11 @@ hymenoptera_data/
 
 ---
 
-## 📍 6. Utiliser un dataset local
+## 📍 7. Utiliser un dataset local
 
 Si le dataset est déjà présent sur l'ordinateur, il n'est pas nécessaire de le télécharger à nouveau.
 
-Dans le notebook, définir simplement le chemin du dataset :
+Dans le script, remplacer `data_dir` uniquement si le dataset se trouve ailleurs :
 
 ```python
 data_dir = "./hymenoptera_data"
@@ -184,18 +198,18 @@ data_dir = "/Users/username/Documents/MLProject/hymenoptera_data"
 
 ---
 
-## 🌐 7. Télécharger le dataset avec wget
+## 🌐 8. Télécharger le dataset
 
 Si le dataset n'est pas disponible localement, il peut être téléchargé depuis le serveur PyTorch.
 
-Dans un notebook Jupyter :
+Dans un script Python :
 
 ```python
-import wget
+import urllib.request
 
 url = "https://download.pytorch.org/tutorial/hymenoptera_data.zip"
 
-wget.download(url)
+urllib.request.urlretrieve(url, "hymenoptera_data.zip")
 ```
 
 Le fichier `hymenoptera_data.zip` sera téléchargé dans le répertoire courant.
@@ -210,7 +224,7 @@ unzip hymenoptera_data.zip
 
 ---
 
-## 🧠 8. Modèle utilisé : ResNet-18
+## 🧠 9. Modèle utilisé : ResNet-18
 
 Le projet utilise **ResNet-18**, un réseau neuronal convolutif pré-entraîné sur ImageNet.
 
@@ -242,7 +256,7 @@ Bees
 
 ---
 
-## 🔄 9. Transfer Learning
+## 🔄 10. Transfer Learning
 
 Le projet utilise la technique du **Transfer Learning**.
 
@@ -275,7 +289,7 @@ Cette approche permet généralement d'obtenir de bonnes performances avec un da
 
 ---
 
-## 🖼️ 10. Transformation des images
+## 🖼️ 11. Transformation des images
 
 Les images sont transformées avant d'être fournies au réseau neuronal.
 
@@ -412,7 +426,7 @@ L'objectif principal est la **généralisation** du modèle.
 
 ---
 
-## 💻 14. Lancer Jupyter Notebook
+## 💻 14. Lancer le script
 
 Après avoir installé les dépendances :
 
@@ -420,19 +434,11 @@ Après avoir installé les dépendances :
 pip install -r requirements.txt
 ```
 
-lancer Jupyter Notebook :
+Lancer ensuite le script depuis le terminal :
 
 ```bash
-jupyter notebook
+python transfert-learning.py
 ```
-
-ou JupyterLab :
-
-```bash
-jupyter lab
-```
-
-Ouvrir ensuite `classification.ipynb` et exécuter les cellules dans l'ordre.
 
 ---
 
@@ -500,7 +506,6 @@ sympy==1.14.0
 torch==2.8.0
 torchvision==0.23.0
 typing_extensions==4.16.0
-wget==3.2
 zipp==3.23.1
 ```
 
@@ -532,14 +537,14 @@ source .venv/bin/activate
 # Installer toutes les dépendances
 pip install -r requirements.txt
 
-# Lancer Jupyter Notebook
-jupyter notebook
+# Lancer le script
+python transfert-learning.py
 ```
 
 Ensuite, ouvrir :
 
 ```text
-classification.ipynb
+transfert-learning.py
 ```
 
 ---
@@ -613,8 +618,8 @@ source .venv/bin/activate
 # Installer les dépendances
 pip install -r requirements.txt
 
-# Lancer Jupyter Notebook
-jupyter notebook
+# Lancer le script
+python transfert-learning.py
 ```
 ## 📌 Quelques captures
 
