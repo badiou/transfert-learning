@@ -4,6 +4,12 @@ Ce projet applique le **transfer learning** avec PyTorch et Torchvision pour
 classer des images de fourmis (*ants*) et d'abeilles (*bees*). Le script
 principal est [transfert-learning.py](transfert-learning.py).
 
+## Exemples d'images
+
+| Fourmi | Abeille |
+| --- | --- |
+| ![Image d'une fourmi](images/fourmi.jpg) | ![Image d'une abeille](images/abeille.jpg) |
+
 ## Fonctionnement
 
 Le script :
@@ -65,6 +71,9 @@ transfert-learning/
 ├── transfert-learning.py
 ├── requirements.txt
 ├── README.md
+├── images/
+│   ├── fourmi.jpg
+│   └── abeille.jpg
 ├── hymenoptera_data/
 │   ├── train/
 │   │   ├── ants/
