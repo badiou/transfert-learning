@@ -210,6 +210,40 @@ Dans cette évaluation, le fine-tuning est nettement meilleur. Le feature
 extractor, qui ne met à jour que la dernière couche, aurait besoin d'un
 entraînement plus long ou de réglages supplémentaires.
 
+### L'écart énorme entre les deux modèles est suspect, mais explicable
+
+- **Fine-tuning (97,92 %)** : tout le réseau a pu s'adapter aux caractéristiques
+   spécifiques de ce dataset (résolution, cadrage, luminosité et style des
+   photos). Un score très élevé sur le **même type de données** que celui vu en
+   entraînement est cohérent avec un modèle qui a bien mémorisé les spécificités
+   visuelles de *ce* dataset précis, mais ne garantit pas une vraie capacité de
+   reconnaissance faciale généraliste.
+- **Feature extractor (57 %)** : ce score est bien plus bas, ce qui est logique.
+   Seule la dernière couche a pu s'adapter ; le reste du réseau reste figé sur
+   des représentations génériques d'ImageNet (objets et textures), qui ne sont
+   pas spécifiquement optimisées pour distinguer des visages entre eux. `57 %`
+   reste **nettement au-dessus du hasard** (`20 %` pour cinq classes) : le modèle
+   apprend donc quelque chose de réel, mais de façon beaucoup moins fine.
+
+### Ce contraste doit être vérifié sur LFW
+
+Si le score de `97,92 %` du fine-tuning s'effondre fortement sur LFW, par
+exemple vers `60-70 %` ou moins, cela confirmerait que ce résultat est en
+grande partie dû à un **surapprentissage des spécificités du dataset Kaggle**,
+plutôt qu'à une véritable capacité de reconnaissance faciale généralisable.
+À l'inverse, si le feature extractor (`57 %`) reste stable sur LFW, cela
+indiquerait qu'il généralise mieux malgré un score brut plus faible.
+
+En résumé, ces résultats ne sont ni « bons » ni « mauvais » dans l'absolu :
+ils sont incomplets. Le vrai test de fiabilité est la comparaison avec LFW,
+qui permettra d'évaluer les modèles `model_ft` et `model_conv` sauvegardés sur
+des visages provenant d'un autre dataset.
+
+À ce stade, je n'ai pas encore effectué l'entraînement ni la validation sur
+LFW. Il est toutefois important de réaliser cette étape afin de vérifier si
+les modèles généralisent correctement et si les résultats obtenus sur le
+dataset Kaggle sont réellement fiables.
+
 ## Fichiers ignorés
 
 [.gitignore](.gitignore) exclut notamment l'environnement virtuel, le dataset,
@@ -404,6 +438,40 @@ The saved models were evaluated on the `914` images in the `valid` set:
 In this evaluation, fine-tuning performed significantly better. The feature
 extractor, which updates only the final layer, would need longer training or
 additional tuning.
+
+### The Large Gap Between the Two Models Is Suspicious but Explainable
+
+- **Fine-tuning (97.92%)**: the entire network was able to adapt to the specific
+   characteristics of this dataset, including resolution, framing, lighting,
+   and photo style. A very high score on the **same type of data** seen during
+   training is consistent with a model that has memorized the visual properties
+   of *this* specific dataset, but it does not necessarily demonstrate general
+   face-recognition ability.
+- **Feature extractor (57%)**: this much lower score is understandable because
+   only the final layer was allowed to adapt. The rest of the network remains
+   frozen with generic ImageNet representations (objects and textures), which
+   are not specifically optimized to distinguish between faces. `57%` is still
+   **well above chance** (`20%` for five classes), so the model is learning
+   something real, just much less precisely.
+
+### This Contrast Should Be Tested on LFW
+
+If the fine-tuning score of `97.92%` drops sharply on LFW, for example to
+`60-70%` or lower, this would confirm that the result is largely caused by
+**overfitting to the specific characteristics of the Kaggle dataset**, rather
+than by genuine generalizable face-recognition ability. Conversely, if the
+feature extractor (`57%`) remains stable on LFW, it would indicate better
+generalization despite its lower raw score.
+
+In summary, these results are neither simply "good" nor "bad": they are
+incomplete. The real reliability test is the comparison with LFW, which will
+evaluate the saved `model_ft` and `model_conv` models on faces from a different
+dataset.
+
+At this stage, I have not yet trained or validated the models on LFW. However,
+performing this step is important to check whether the models generalize
+correctly and whether the results obtained on the Kaggle dataset are genuinely
+reliable.
 
 ## Ignored Files
 
