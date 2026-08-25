@@ -244,6 +244,46 @@ LFW. Il est toutefois important de réaliser cette étape afin de vérifier si
 les modèles généralisent correctement et si les résultats obtenus sur le
 dataset Kaggle sont réellement fiables.
 
+## Qu'est-ce que LFW et comment l'obtenir ?
+
+**LFW** (*Labeled Faces in the Wild*) est un dataset public de visages pris
+dans des conditions réelles : éclairages, expressions, cadrages et arrière-plans
+variés. Il est souvent utilisé pour tester la généralisation d'un modèle de
+reconnaissance ou de vérification faciale. Il contient plus de `13 000` images
+de plus de `5 000` personnes.
+
+LFW est différent du dataset Kaggle utilisé ici : ses personnes et ses labels
+ne correspondent pas directement aux cinq classes `bill_gates`, `elon_musk`,
+`jeff_bezos`, `mark_zuckerberg` et `steve_jobs`. Il ne suffit donc pas de
+remplacer le dossier `valid` par LFW ; il faut préparer une évaluation adaptée
+ou utiliser LFW pour une tâche de vérification faciale.
+
+Pour télécharger LFW automatiquement, installer `scikit-learn` :
+
+```bash
+.venv/bin/python -m pip install scikit-learn
+```
+
+Puis exécuter :
+
+```python
+from sklearn.datasets import fetch_lfw_people
+
+lfw = fetch_lfw_people(
+   min_faces_per_person=20,
+   resize=0.4,
+   color=True
+)
+
+print("Images LFW :", lfw.images.shape[0])
+print("Classes LFW :", len(lfw.target_names))
+print("Dataset stocké dans le cache scikit-learn.")
+```
+
+Le premier téléchargement nécessite une connexion Internet. Les fichiers sont
+ensuite conservés dans le cache local de scikit-learn et ne sont pas ajoutés
+au dépôt Git.
+
 ## Fichiers ignorés
 
 [.gitignore](.gitignore) exclut notamment l'environnement virtuel, le dataset,
@@ -472,6 +512,45 @@ At this stage, I have not yet trained or validated the models on LFW. However,
 performing this step is important to check whether the models generalize
 correctly and whether the results obtained on the Kaggle dataset are genuinely
 reliable.
+
+## What Is LFW and How to Get It?
+
+**LFW** (*Labeled Faces in the Wild*) is a public face dataset collected in
+real-world conditions, with varied lighting, expressions, framing, and
+backgrounds. It is commonly used to test the generalization of face-recognition
+or face-verification models. It contains more than `13,000` images of more than
+`5,000` people.
+
+LFW is different from the Kaggle dataset used here: its people and labels do
+not directly match the five classes `bill_gates`, `elon_musk`, `jeff_bezos`,
+`mark_zuckerberg`, and `steve_jobs`. Therefore, LFW cannot simply replace the
+`valid` folder; an adapted evaluation must be prepared, or LFW must be used for
+a face-verification task.
+
+To download LFW automatically, install `scikit-learn`:
+
+```bash
+.venv/bin/python -m pip install scikit-learn
+```
+
+Then run:
+
+```python
+from sklearn.datasets import fetch_lfw_people
+
+lfw = fetch_lfw_people(
+   min_faces_per_person=20,
+   resize=0.4,
+   color=True
+)
+
+print("LFW images:", lfw.images.shape[0])
+print("LFW classes:", len(lfw.target_names))
+print("Dataset stored in the scikit-learn cache.")
+```
+
+The first download requires an Internet connection. The files are then kept
+in scikit-learn's local cache and are not added to the Git repository.
 
 ## Ignored Files
 
