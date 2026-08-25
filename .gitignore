@@ -6,9 +6,11 @@ __pycache__/
 
 # Données et modèles téléchargés
 hymenoptera_data/
+famous_people_dataset/
 *.zip
 *.pt
 *.pth
+models/
 
 # Jupyter
 .ipynb_checkpoints/
