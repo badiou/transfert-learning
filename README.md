@@ -153,6 +153,16 @@ mark_zuckerberg
 steve_jobs
 ```
 
+### Exemples d'images
+
+| Bill Gates | Elon Musk | Jeff Bezos |
+| --- | --- | --- |
+| ![Bill Gates](images/famous/bill_gates.jpg) | ![Elon Musk](images/famous/elon_musk.jpg) | ![Jeff Bezos](images/famous/jeff_bezos.jpg) |
+
+| Mark Zuckerberg | Steve Jobs |
+| --- | --- |
+| ![Mark Zuckerberg](images/famous/mark_zuckerberg.jpg) | ![Steve Jobs](images/famous/steve_jobs.jpg) |
+
 Le dataset Kaggle est téléchargé automatiquement avec
 [famous_dataset_import.py](famous_dataset_import.py), puis placé dans :
 
@@ -326,6 +336,16 @@ jeff_bezos
 mark_zuckerberg
 steve_jobs
 ```
+
+### Image Examples
+
+| Bill Gates | Elon Musk | Jeff Bezos |
+| --- | --- | --- |
+| ![Bill Gates](images/famous/bill_gates.jpg) | ![Elon Musk](images/famous/elon_musk.jpg) | ![Jeff Bezos](images/famous/jeff_bezos.jpg) |
+
+| Mark Zuckerberg | Steve Jobs |
+| --- | --- |
+| ![Mark Zuckerberg](images/famous/mark_zuckerberg.jpg) | ![Steve Jobs](images/famous/steve_jobs.jpg) |
 
 The Kaggle dataset is downloaded automatically by
 [famous_dataset_import.py](famous_dataset_import.py) and stored in:
