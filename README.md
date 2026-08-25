@@ -196,6 +196,20 @@ La fonction `visualize_random_validation_images` choisit aléatoirement une
 image dans chaque classe du dossier `valid` et affiche la classe réelle ainsi
 que la classe prédite.
 
+### Résultats mesurés
+
+Les modèles sauvegardés ont été évalués sur les `914` images de l'ensemble
+`valid` :
+
+| Modèle | Prédictions correctes | Accuracy |
+| --- | ---: | ---: |
+| Fine-tuning ResNet-18 | `895 / 914` | **97,92 %** |
+| Feature extractor ResNet-18 | `521 / 914` | **57,00 %** |
+
+Dans cette évaluation, le fine-tuning est nettement meilleur. Le feature
+extractor, qui ne met à jour que la dernière couche, aurait besoin d'un
+entraînement plus long ou de réglages supplémentaires.
+
 ## Fichiers ignorés
 
 [.gitignore](.gitignore) exclut notamment l'environnement virtuel, le dataset,
@@ -377,6 +391,19 @@ subsequent runs, so training is skipped when those files already exist.
 
 The `visualize_random_validation_images` function randomly selects one image
 from each class in `valid` and displays its actual and predicted classes.
+
+### Measured Results
+
+The saved models were evaluated on the `914` images in the `valid` set:
+
+| Model | Correct predictions | Accuracy |
+| --- | ---: | ---: |
+| ResNet-18 fine-tuning | `895 / 914` | **97.92%** |
+| ResNet-18 feature extractor | `521 / 914` | **57.00%** |
+
+In this evaluation, fine-tuning performed significantly better. The feature
+extractor, which updates only the final layer, would need longer training or
+additional tuning.
 
 ## Ignored Files
 
