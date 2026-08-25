@@ -2,7 +2,11 @@
 
 Ce projet applique le **transfer learning** avec PyTorch et Torchvision pour
 classer des images de fourmis (*ants*) et d'abeilles (*bees*). Le script
-principal est [transfert-learning.py](transfert-learning.py).
+principal est [transfert_learning_ants_bees.py](transfert_learning_ants_bees.py).
+
+Après avoir appris à réaliser cet exemple avec les fourmis et les abeilles à
+partir de la documentation de PyTorch, j'ai souhaité m'amuser à créer une
+détection d'images capable de reconnaître des personnes sur une photo.
 
 ## Exemples d'images
 
@@ -59,7 +63,7 @@ Dans VS Code, sélectionnez l'interpréteur `.venv/bin/python` avec la commande
 
 ```bash
 source .venv/bin/activate
-python transfert-learning.py
+python transfert_learning_ants_bees.py
 ```
 
 Le premier lancement nécessite une connexion Internet. Le script place le
@@ -68,7 +72,7 @@ existe déjà.
 
 ```text
 transfert-learning/
-├── transfert-learning.py
+├── transfert_learning_ants_bees.py
 ├── requirements.txt
 ├── README.md
 ├── images/
@@ -90,7 +94,7 @@ Le dataset est téléchargé depuis :
 ## Paramètres principaux
 
 Les paramètres sont définis directement dans
-[transfert-learning.py](transfert-learning.py) :
+[transfert_learning_ants_bees.py](transfert_learning_ants_bees.py) :
 
 | Paramètre | Valeur | Rôle |
 | --- | ---: | --- |
@@ -129,12 +133,58 @@ Pour le fine-tuning, la meilleure accuracy est atteinte aux époques `17` et
 ```python
 visualize_model_predictions(
     model_conv,
-    img_path=data_dir / 'val' / 'bees' / '2501530886_e20952b97d.jpg'
+   img_path=data_dir / 'val' / 'bees' / '2501530886_e20952b97d.jpg'
 )
 ```
 
 Pour tester une autre image, remplacez ce chemin par celui d'une image lisible
 par Pillow. La prédiction est affichée après les deux entraînements.
+
+## Second projet : personnes célèbres
+
+Le script [transfert_learning_famous.py](transfert_learning_famous.py) applique
+le même principe de transfer learning à cinq classes de visages :
+
+```text
+bill_gates
+elon_musk
+jeff_bezos
+mark_zuckerberg
+steve_jobs
+```
+
+Le dataset Kaggle est téléchargé automatiquement avec
+[famous_dataset_import.py](famous_dataset_import.py), puis placé dans :
+
+```text
+famous_people_dataset/data/
+├── train/
+└── valid/
+```
+
+Le script fait correspondre le dossier réel `valid` avec le nom interne `val` :
+
+```python
+split_dirs = {
+   'train': 'train',
+   'val': 'valid',
+}
+```
+
+Pour lancer ce second projet :
+
+```bash
+.venv/bin/python transfert_learning_famous.py 2>&1 | tee resultat.txt
+```
+
+Il entraîne deux modèles ResNet-18 pendant `5` époques : un modèle en
+fine-tuning et un modèle utilisé comme feature extractor. Les meilleurs poids
+sont conservés dans `models/` et rechargés lors des exécutions suivantes ; le
+réentraînement n'est donc pas relancé si les fichiers existent déjà.
+
+La fonction `visualize_random_validation_images` choisit aléatoirement une
+image dans chaque classe du dossier `valid` et affiche la classe réelle ainsi
+que la classe prédite.
 
 ## Fichiers ignorés
 
@@ -147,7 +197,11 @@ les archives ZIP, les poids de modèles et les caches Python.
 
 This project uses **transfer learning** with PyTorch and Torchvision to
 classify images of ants and bees. The main script is
-[transfert-learning.py](transfert-learning.py).
+[transfert_learning_ants_bees.py](transfert_learning_ants_bees.py).
+
+After learning how to build this ants-and-bees example from the PyTorch
+documentation, I wanted to experiment by creating an image recognition system
+that can recognize people in a photo.
 
 ## Image Examples
 
@@ -203,7 +257,7 @@ In VS Code, select `.venv/bin/python` with **Python: Select Interpreter**.
 
 ```bash
 source .venv/bin/activate
-python transfert-learning.py
+python transfert_learning_ants_bees.py
 ```
 
 The first run requires an Internet connection. The script stores the dataset
@@ -215,7 +269,7 @@ The dataset is downloaded from:
 ## Main Parameters
 
 The parameters are defined directly in
-[transfert-learning.py](transfert-learning.py):
+[transfert_learning_ants_bees.py](transfert_learning_ants_bees.py):
 
 | Parameter | Value | Purpose |
 | --- | ---: | --- |
@@ -259,6 +313,50 @@ visualize_model_predictions(
 
 To test another image, replace this path with the path to an image readable by
 Pillow. The prediction is displayed after both training runs.
+
+## Second Project: Famous People
+
+The [transfert_learning_famous.py](transfert_learning_famous.py) script applies
+the same transfer learning approach to five face classes:
+
+```text
+bill_gates
+elon_musk
+jeff_bezos
+mark_zuckerberg
+steve_jobs
+```
+
+The Kaggle dataset is downloaded automatically by
+[famous_dataset_import.py](famous_dataset_import.py) and stored in:
+
+```text
+famous_people_dataset/data/
+├── train/
+└── valid/
+```
+
+The script maps the actual `valid` folder to the internal `val` name:
+
+```python
+split_dirs = {
+   'train': 'train',
+   'val': 'valid',
+}
+```
+
+Run this second project with:
+
+```bash
+.venv/bin/python transfert_learning_famous.py 2>&1 | tee resultat.txt
+```
+
+It trains two ResNet-18 models for `5` epochs: one with fine-tuning and one as
+a feature extractor. The best weights are stored in `models/` and loaded on
+subsequent runs, so training is skipped when those files already exist.
+
+The `visualize_random_validation_images` function randomly selects one image
+from each class in `valid` and displays its actual and predicted classes.
 
 ## Ignored Files
 
