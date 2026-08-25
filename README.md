@@ -1,3 +1,15 @@
+# Présentation des deux projets
+
+Ce dépôt contient deux projets de transfer learning avec PyTorch :
+
+- **Fourmis et abeilles** : classification d'images en deux catégories à
+   partir de l'exemple présenté dans la documentation de PyTorch.
+- **Personnes célèbres** : classification de visages en cinq catégories à
+   partir d'un dataset téléchargé depuis Kaggle.
+
+Le premier projet sert de base d'apprentissage, tandis que le second est une
+expérimentation personnelle pour reconnaître des personnes sur des photos.
+
 # Classification d'images : fourmis et abeilles
 
 Ce projet applique le **transfer learning** avec PyTorch et Torchvision pour
@@ -290,6 +302,18 @@ au dépôt Git.
 les archives ZIP, les poids de modèles et les caches Python.
 
 ---
+
+## Overview of the Two Projects
+
+This repository contains two transfer learning projects built with PyTorch:
+
+- **Ants and bees**: image classification into two categories, based on the
+   example from the PyTorch documentation.
+- **Famous people**: face classification into five categories, using a dataset
+   downloaded from Kaggle.
+
+The first project provides the learning foundation, while the second is a
+personal experiment to recognize people in photos.
 
 # Image Classification: Ants and Bees
 
